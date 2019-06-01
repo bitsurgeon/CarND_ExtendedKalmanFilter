@@ -21,6 +21,7 @@ Kalman Filter is commonly used for tracking a moving object, particularly in est
 - LIDAR measurements are red circles
 - RADAR measurements are blue circles with an arrow pointing in the direction of the observed angle
 - estimation markers are green triangles
+- ground truth positions are marked with the object
 
 ### Estimation Pipeline
 
