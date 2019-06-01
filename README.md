@@ -32,6 +32,22 @@ Kalman Filter involves two main steps, the prediction and the measurement update
   - Since RADAR readings are in polar coordinates, when converting it to cartesian coordinates, the nonlinear transformation makes Kalman Filter no longer suitable.
   - First order Taylor expansion is used to linearise the transform, and this gives the Extended Kalman Filter.
 
+### Build the Pipeline
+
+The pipeline has been tested in WSL using Ubuntu 18.04.
+
+Open bash command line, then go to the root of the repository, and run the followings:
+
+```sh
+# prepare build environment
+./install-linux.sh
+
+# build pipeline
+mkdir build && cd build
+cmake .. && make
+./ExtendedKF
+```
+
 ### Demo Run
 
 Here is a video recording to show how the sensor fusion pipeline work in simulator.
