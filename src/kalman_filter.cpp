@@ -3,11 +3,6 @@
 using Eigen::MatrixXd;
 using Eigen::VectorXd;
 
-/* 
- * Please note that the Eigen library does not initialize 
- *   VectorXd or MatrixXd objects with zeros upon creation.
- */
-
 KalmanFilter::KalmanFilter() {}
 
 KalmanFilter::~KalmanFilter() {}
@@ -24,7 +19,7 @@ void KalmanFilter::Init(VectorXd &x_in, MatrixXd &P_in, MatrixXd &F_in,
 
 void KalmanFilter::Predict() {
   /**
-   * TODO: predict the state
+   * predict the state
    */
   x_ = F_ * x_;
   P_ = F_ * P_ * F_.transpose() + Q_;
@@ -32,7 +27,6 @@ void KalmanFilter::Predict() {
 
 void KalmanFilter::_UpdateRoutine(const VectorXd &y) {
   // measurement update routine common to KF and EKF
-  
   MatrixXd S = H_ * P_ * H_.transpose() + R_;
   MatrixXd K = P_ * H_.transpose() * S.inverse();
 
@@ -45,7 +39,6 @@ void KalmanFilter::_UpdateRoutine(const VectorXd &y) {
 
 double KalmanFilter::_AngleWrap(double radian) {
   // radian angle normalized to [-pi, pi)
-  
   double pi_2 = M_PI * 2;
   radian = fmod(radian + M_PI, pi_2);
   if (radian < 0)
@@ -56,7 +49,7 @@ double KalmanFilter::_AngleWrap(double radian) {
 
 void KalmanFilter::Update(const VectorXd &z) {
   /**
-   * TODO: update the state by using Kalman Filter equations
+   * update the state by using Kalman Filter equations
    */
   VectorXd z_pred = H_ * x_;
   VectorXd y = z - z_pred;
@@ -66,7 +59,7 @@ void KalmanFilter::Update(const VectorXd &z) {
 
 void KalmanFilter::UpdateEKF(const VectorXd &z) {
   /**
-   * TODO: update the state by using Extended Kalman Filter equations
+   * update the state by using Extended Kalman Filter equations
    */
   double p_x = x_(0);
   double p_y = x_(1);
